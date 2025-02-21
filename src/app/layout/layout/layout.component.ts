@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   standalone: false,
 })
 export class LayoutComponent {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(public authService: AuthService, private router: Router) {}
 
   logout() {
     this.authService.logout();

@@ -11,6 +11,7 @@ export class AuthService {
   private apiUrl = 'http://localhost:3000/users';
   private userSubject = new BehaviorSubject<any>(null);
   user$ = this.userSubject.asObservable();
+  private isLoggedIn = false;
 
   constructor(private http: HttpClient, private router: Router) {
     const user = localStorage.getItem('user');
@@ -44,6 +45,7 @@ export class AuthService {
         if (user) {
           const userData = { id: user.id, email: user.email, role: user.role };
           this.saveUserData(userData);
+          this.isLoggedIn = true;
           return userData;
         } else {
           throw new Error('Credenciales incorrectas');
@@ -67,6 +69,7 @@ export class AuthService {
 
   logout() {
     this.clearUserData();
+    this.isLoggedIn = false;
     this.router.navigate(['/login']);
   }
 
@@ -75,8 +78,8 @@ export class AuthService {
     this.userSubject.next(null);
   }
 
-  get isAuthenticated(): boolean {
-    return !!this.userSubject.value;
+  isAuthenticated(): boolean {
+    return this.isLoggedIn;
   }
 
   get userRole(): string {

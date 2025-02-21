@@ -1,15 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './core/guards/auth.guard';
-const routes: Routes = [
-  { path: '', redirectTo: '/alumnos/lista-alumnos', pathMatch: 'full' },
 
+const routes: Routes = [
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   {
     path: 'login',
     loadChildren: () =>
       import('./features/auth/auth/auth.module').then((m) => m.AuthModule),
   },
-
   {
     path: 'alumnos',
     loadChildren: () =>
@@ -18,7 +17,6 @@ const routes: Routes = [
       ),
     canActivate: [AuthGuard],
   },
-
   {
     path: 'cursos',
     loadChildren: () =>
@@ -27,7 +25,6 @@ const routes: Routes = [
       ),
     canActivate: [AuthGuard],
   },
-
   {
     path: 'clases',
     loadChildren: () =>
@@ -36,8 +33,7 @@ const routes: Routes = [
       ),
     canActivate: [AuthGuard],
   },
-
-  { path: '**', redirectTo: '/alumnos/lista-alumnos' },
+  { path: '**', redirectTo: '/login' },
 ];
 
 @NgModule({

@@ -1,3 +1,4 @@
 <main class="container-fluid h-100 w-100">
-  <app-layout></app-layout>
+  <app-layout *ngIf="authService.isAuthenticated()"></app-layout>
+  <router-outlet *ngIf="!authService.isAuthenticated()"></router-outlet>
 </main>
