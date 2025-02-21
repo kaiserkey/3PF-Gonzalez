@@ -4,6 +4,7 @@ import { ListaAlumnosComponent } from '../components/lista-alumnos/lista-alumnos
 import { AbmAlumnosComponent } from '../components/abm-alumnos/abm-alumnos.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'lista-alumnos', pathMatch: 'full' },
   { path: 'lista-alumnos', component: ListaAlumnosComponent },
   { path: 'abm-alumnos', component: AbmAlumnosComponent },
   { path: 'abm-alumnos/:id', component: AbmAlumnosComponent },
